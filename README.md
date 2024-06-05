@@ -30,7 +30,7 @@ const response = `{
 }`;
 
 // Import the function
-const {validateOEmbedResponse} = require('./index');
+const {validateOEmbedResponse} = require('oembed-validator');
 
 // Call the function
 validateOEmbedResponse(200, response).then((result) => {
