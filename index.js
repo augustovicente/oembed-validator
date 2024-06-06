@@ -58,9 +58,10 @@ const validateOEmbedResponseReturn = {
  * Check if json or xml is a valid oembed response
  * @param {number} statusCode
  * @param {string} response 
+ * @param {boolean} ignoreExtraFields
  * @returns {Promise<string>}
  */
-async function validateOEmbedResponse(statusCode, response) {
+async function validateOEmbedResponse(statusCode, response, ignoreExtraFields = false) {
     return new Promise((resolve, reject) => {
         // Check if the status code is 200
         if (statusCode === 200) {
@@ -70,6 +71,10 @@ async function validateOEmbedResponse(statusCode, response) {
                 const fields = Object.keys(json);
                 const missingFields = requiredFields.filter(field => !fields.includes(field));
                 if (missingFields.length === 0) {
+                    if (ignoreExtraFields) {
+                        resolve(validateOEmbedResponseReturn.VALID_OEMBED_JSON);
+                    }
+
                     const extraFields = fields.filter(field => !requiredFields.includes(field) && !optionalFields.includes(field));
                     if (extraFields.length === 0) {
                         resolve(validateOEmbedResponseReturn.VALID_OEMBED_JSON);
@@ -101,6 +106,10 @@ async function validateOEmbedResponse(statusCode, response) {
                         const fields = Object.keys(result.oembed);
                         const missingFields = requiredFields.filter(field => !fields.includes(field));
                         if (missingFields.length === 0) {
+                            if (ignoreExtraFields) {
+                                resolve(validateOEmbedResponseReturn.VALID_OEMBED_XML);
+                            }
+
                             const extraFields = fields.filter(field => !requiredFields.includes(field) && !optionalFields.includes(field));
                             if (extraFields.length === 0) {
                                 resolve(validateOEmbedResponseReturn.VALID_OEMBED_XML);

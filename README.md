@@ -24,6 +24,7 @@ const response = `{
 	"width": 425,
 	"height": 344,
 	"title": "Amazing Nintendo Facts",
+	"url": "test", // extra field
 	"author_name": "ZackScott",
 	"author_url": "https://www.youtube.com/user/ZackScott",
 	"html": "<object width=\\"425\\" height=\\"344\\"><param name=\\"movie\\" value=\\"https://www.youtube.com/v/M3r2XDceM6A&fs=1\\"></param><param name=\\"allowFullScreen\\" value=\\"true\\"></param><param name=\\"allowscriptaccess\\" value=\\"always\\"></param><embed src=\\"https://www.youtube.com/v/M3r2XDceM6A&fs=1\\" type=\\"application/x-shockwave-flash\\" width=\\"425\\" height=\\"344\\" allowscriptaccess=\\"always\\" allowfullscreen=\\"true\\"></embed></object>"
@@ -33,7 +34,7 @@ const response = `{
 const {validateOEmbedResponse} = require('oembed-validator');
 
 // Call the function
-validateOEmbedResponse(200, response).then((result) => {
+validateOEmbedResponse(200, response, true).then((result) => {
     console.log('Result:', result);
 }).catch((error) => {
     console.error('Error:', error);
