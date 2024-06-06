@@ -61,7 +61,7 @@ const validateOEmbedResponseReturn = {
  * @param {boolean} ignoreExtraFields
  * @returns {Promise<string>}
  */
-async function validateOEmbedResponse(statusCode, response, ignoreExtraFields = false) {
+function validateOEmbedResponse(statusCode, response, ignoreExtraFields = false) {
     return new Promise((resolve, reject) => {
         // Check if the status code is 200
         if (statusCode === 200) {
@@ -83,7 +83,6 @@ async function validateOEmbedResponse(statusCode, response, ignoreExtraFields = 
                         for (const field of extraFields) {
                             if (!requiredByType[json.type].includes(field)) {
                                 not_valid_fields.push(field);
-
                             }
                         }
                         if (not_valid_fields.length > 0) {

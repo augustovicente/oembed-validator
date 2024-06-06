@@ -5,9 +5,9 @@ This is a simple utility called "oEmbed Validator". It checks if a given JSON or
 ## Installation
 
 ```bash
-npm install embed-validator
+npm install oembed-validator
 # or
-yarn install embed-validator
+yarn install oembed-validator
 ```
 
 ## Usage
